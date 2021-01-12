@@ -8,7 +8,7 @@ const app = express();
 const { checkUser } = require("./middleware/authMiddleware");
 // middleware
 app.use(
-  cors({ origin: "https://mernstack-app1.netlify.app/", credentials: true })
+  cors({ origin: "https://mernstack-app1.netlify.app", credentials: true })
 );
 app.use(express.json());
 app.use(cookieParser());
@@ -29,6 +29,7 @@ mongoose
 //routes
 app.get("*", checkUser);
 app.get("/", (req, res) => {
+  console.log(res.header);
   res.send({ user: res.locals.user });
 });
 
