@@ -40,7 +40,7 @@ const handleErrors = (err) => {
 const maxAge = 3 * 24 * 60 * 60; //? 3 days
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_KEY, { expiresIn: maxAge });
+  return jwt.sign({ id }, "anish-dai-secret", { expiresIn: maxAge });
 };
 
 //? signup post

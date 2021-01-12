@@ -1,4 +1,3 @@
-const { json } = require("express");
 const jwt = require("jsonwebtoken");
 const User = require("../model/User");
 
@@ -7,7 +6,7 @@ const requireAuth = (req, res, next) => {
 
   // check json web tokens exists and is verified or not
   if (token) {
-    jwt.verify(token, process.env.JWT_KEY, (err, decodedToken) => {
+    jwt.verify(token, "anish-dai-secret", (err, decodedToken) => {
       if (err) {
         console.log(err.message, "require auth error"); //! error
         res.json({ redirect: true });
@@ -24,7 +23,7 @@ const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (token) {
-    jwt.verify(token, process.env.JWT_KEY, async (err, decodedToken) => {
+    jwt.verify(token, "anish-dai-secret", async (err, decodedToken) => {
       if (err) {
         console.log(err.message, "check user error"); //! error
         res.locals.user = null;
