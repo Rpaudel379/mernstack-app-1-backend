@@ -29,7 +29,6 @@ mongoose
 //routes
 app.get("*", checkUser);
 app.get("/", (req, res) => {
-  console.log(res.header);
   res.send({ user: res.locals.user });
 });
 
