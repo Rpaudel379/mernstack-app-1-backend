@@ -27,7 +27,7 @@ mongoose
   .catch((err) => console.log(err));
 
 //routes
-app.get("*", checkUser);
+//app.get("*", checkUser);
 app.get("/", (req, res) => {
   res.send({ user: res.locals.user });
 });

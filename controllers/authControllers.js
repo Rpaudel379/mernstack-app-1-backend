@@ -50,13 +50,14 @@ module.exports.signup_post = async (req, res) => {
   try {
     const user = await User.create({ username, email, password });
     const token = createToken(user._id);
-    res.cookie("jwt", token, {
+    /*  res.cookie("jwt", token, {
+      httpOnly: true,
       maxAge: maxAge * 1000,
-    });
-    res.status(201).json({ created: "created", user: user._id });
+    }); */
+    res.status(201).json({ token });
   } catch (err) {
     const errors = handleErrors(err);
-    res.json({ errors });
+    res.status(500).json(errors);
   }
 };
 
@@ -124,13 +125,15 @@ module.exports.login_post = async (req, res) => {
   try {
     const user = await User.login(username, email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, {
+    /*   res.cookie("jwt", token, {
+      httpOnly: true,
       maxAge: maxAge * 1000,
-    });
-    res.status(200).json({ user: "ok" });
+    }); */
+
+    res.status(201).json({ token });
   } catch (err) {
     const errors = handleErrors(err);
-    res.json({ errors });
+    res.status(500).json(errors);
   }
 };
 
@@ -141,4 +144,8 @@ module.exports.dashboard_get = (req, res) => {
 module.exports.logout_post = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.json({ loggedOut: true });
+};
+
+module.exports.valid_get = (req, res) => {
+  res.status(200).json(res.locals.user);
 };
