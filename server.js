@@ -11,7 +11,7 @@ app.use(
   cors({ origin: "https://mernstack-app1.netlify.app", credentials: true })
 );
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 //connection to mongodb
 mongoose
   .connect(process.env.CONNECTION_URL, {

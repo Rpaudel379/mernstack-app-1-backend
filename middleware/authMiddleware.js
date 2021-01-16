@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../model/User");
 
-const requireAuth = (req, res, next) => {
+/* const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
   // check json web tokens exists and is verified or not
@@ -18,7 +18,7 @@ const requireAuth = (req, res, next) => {
     res.json({ redirect: true });
   }
 };
-
+ */
 /* const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
 
@@ -47,7 +47,7 @@ const validToken = (req, res, next) => {
   const token = req.header("x-auth-token");
 
   if (token) {
-    jwt.verify(token, "anish-dai-secret", async (err, decodedToken) => {
+    jwt.verify(token, process.env.JWT_KEY, async (err, decodedToken) => {
       if (err) {
         console.log(err.message, "check user error"); //! error
         res.status(500).json(false);
@@ -66,7 +66,7 @@ const validToken = (req, res, next) => {
 };
 
 module.exports = {
-  requireAuth,
+  //requireAuth,
   //  checkUser,
   validToken,
 };
