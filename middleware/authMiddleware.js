@@ -44,7 +44,7 @@ const requireAuth = (req, res, next) => {
 }; */
 
 const validToken = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.header("x-auth-token");
 
   if (token) {
     jwt.verify(token, "anish-dai-secret", async (err, decodedToken) => {
