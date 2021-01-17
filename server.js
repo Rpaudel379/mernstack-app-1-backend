@@ -8,7 +8,7 @@ const app = express();
 const { checkUser } = require("./middleware/authMiddleware");
 // middleware
 app.use(
-  cors({ origin: "https://mernstack-app1.netlify.app", credentials: true })
+  cors({ origin: "https://mernstack-app.netlify.app", credentials: true })
 );
 app.use(express.json());
 // app.use(cookieParser());
